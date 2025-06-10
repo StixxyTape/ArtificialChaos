@@ -1,0 +1,40 @@
+{
+  "style": [
+	"A realistic image"
+  ],
+  "descriptor": [
+	"armored",
+	"magical",
+	"steampunk",
+	"cybernetic",
+	"undead",
+	"alien",
+	"ethereal",
+	"heroic",
+	"villainous",
+	"mythical",
+	"ancient",
+	"crystal",
+	"flaming",
+	"shadow",
+	"plague-ridden",
+	"mechanical",
+	"tiny",
+	"giant",
+	"massive",
+	"small"
+  ],
+  "subject": [
+	"knight",
+	"wizard",
+	"robot",
+	"dragon",
+	"soldier",
+	"ninja",
+	"goblin",
+	"slime monster",
+	"space marine",
+	"elf",
+	"dwarf"
+  ]
+}

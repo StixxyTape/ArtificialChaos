@@ -1,0 +1,179 @@
+[gd_scene load_steps=20 format=3 uid="uid://decxeviq0c8pr"]
+
+[ext_resource type="Script" uid="uid://ygrtw21mcobd" path="res://ImageGen.gd" id="1_1nc28"]
+[ext_resource type="Script" uid="uid://drfti4o3kudlu" path="res://WordGen.gd" id="2_he4lv"]
+[ext_resource type="Texture2D" uid="uid://csa2v2kwma5xx" path="res://bmw_logo_PNG19699.png" id="2_wm7h2"]
+[ext_resource type="Script" uid="uid://b0b2oaygvgu1m" path="res://CamController.gd" id="3_f7i2c"]
+[ext_resource type="Texture2D" uid="uid://iyyuu23s45qv" path="res://icon.svg" id="5_1nqw0"]
+
+[sub_resource type="Gradient" id="Gradient_f7i2c"]
+offsets = PackedFloat32Array(0.0163934, 1)
+colors = PackedColorArray(0.817462, 0, 0.152658, 1, 1, 0.575268, 0.540867, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1nqw0"]
+gradient = SubResource("Gradient_f7i2c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cqprc"]
+texture = SubResource("GradientTexture2D_1nqw0")
+texture_margin_top = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_f7i2c"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_1nqw0"]
+offsets = PackedFloat32Array(0, 0.97541)
+colors = PackedColorArray(1, 0.246809, 0.172426, 1, 1, 0.594071, 0.359179, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cqprc"]
+gradient = SubResource("Gradient_1nqw0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fkrhb"]
+texture = SubResource("GradientTexture2D_cqprc")
+texture_margin_top = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1dtuh"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_cqprc"]
+offsets = PackedFloat32Array(0, 0.97541)
+colors = PackedColorArray(0.153085, 0.570947, 1, 1, 0.728764, 0.6491, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fkrhb"]
+gradient = SubResource("Gradient_cqprc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1dtuh"]
+texture = SubResource("GradientTexture2D_fkrhb")
+texture_margin_top = 20.0
+
+[sub_resource type="Gradient" id="Gradient_fkrhb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1dtuh"]
+gradient = SubResource("Gradient_fkrhb")
+width = 512
+
+[sub_resource type="Gradient" id="Gradient_1dtuh"]
+colors = PackedColorArray(0.881937, 0.881937, 0.881937, 1, 1, 1, 1, 1)
+
+[node name="ImageGenerator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1nc28")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_left = -495.0
+offset_top = -411.0
+offset_right = 1553.0
+offset_bottom = 1637.0
+texture = ExtResource("5_1nqw0")
+
+[node name="PromptInput" type="TextEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 34.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 145.0
+
+[node name="Sprite" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 1024.0
+offset_bottom = 1288.0
+grow_vertical = 0
+pivot_offset = Vector2(512, 644)
+
+[node name="StatList" type="VBoxContainer" parent="Sprite"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="HealthBar" type="ProgressBar" parent="Sprite/StatList"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_cqprc")
+value = 53.31
+show_percentage = false
+
+[node name="Label" type="Label" parent="Sprite/StatList/HealthBar"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = -38.0
+offset_right = 111.0
+offset_bottom = 7.0
+text = "Health"
+label_settings = SubResource("LabelSettings_f7i2c")
+horizontal_alignment = 1
+
+[node name="DamageBar" type="ProgressBar" parent="Sprite/StatList"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_fkrhb")
+value = 53.31
+show_percentage = false
+
+[node name="Label" type="Label" parent="Sprite/StatList/DamageBar"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = -38.0
+offset_right = 135.0
+offset_bottom = 7.0
+text = "Damage"
+label_settings = SubResource("LabelSettings_1dtuh")
+horizontal_alignment = 1
+
+[node name="SpeedBar" type="ProgressBar" parent="Sprite/StatList"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxTexture_1dtuh")
+value = 53.31
+show_percentage = false
+
+[node name="Label" type="Label" parent="Sprite/StatList/SpeedBar"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = -38.0
+offset_right = 102.0
+offset_bottom = 7.0
+text = "Speed"
+label_settings = SubResource("LabelSettings_1dtuh")
+horizontal_alignment = 1
+
+[node name="ImageDisplay" type="TextureRect" parent="Sprite"]
+layout_mode = 2
+texture = ExtResource("2_wm7h2")
+
+[node name="CloudParticles" type="CPUParticles2D" parent="Sprite"]
+position = Vector2(513, 648)
+emitting = false
+amount = 256
+texture = SubResource("GradientTexture2D_1dtuh")
+lifetime = 2.0
+randomness = 0.75
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(512, 512)
+gravity = Vector2(0, -83.105)
+linear_accel_max = 25.0
+color_ramp = SubResource("Gradient_1dtuh")
+
+[node name="GenerateButton" type="Button" parent="Sprite"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Generate"
+
+[node name="APIRequest" type="HTTPRequest" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 644)
+zoom = Vector2(0.4, 0.4)
+script = ExtResource("3_f7i2c")
+
+[node name="WordGenerator" type="Node" parent="."]
+script = ExtResource("2_he4lv")
+
+[connection signal="pressed" from="Sprite/GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="request_completed" from="APIRequest" to="." method="_on_api_request_completed"]

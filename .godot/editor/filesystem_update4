@@ -1,0 +1,5 @@
+res://ImageGen.tscn
+res://ImageGen.gd
+res://WordGen.gd
+res://CamController.gd
+res://dictionary.json
