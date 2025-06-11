@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://bijde1b7bwjh1"]
+
+[ext_resource type="Script" uid="uid://b0b2oaygvgu1m" path="res://Scripts/CamController.gd" id="1_r150o"]
+[ext_resource type="Script" uid="uid://ygrtw21mcobd" path="res://Scripts/TroopSpawner.gd" id="3_rgh2o"]
+[ext_resource type="Script" uid="uid://drfti4o3kudlu" path="res://Scripts/WordGenerator.gd" id="4_pbw6q"]
+[ext_resource type="Script" uid="uid://nu254gws8dkf" path="res://Scripts/InputManager.gd" id="5_pbw6q"]
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.315, 0.315)
+script = ExtResource("1_r150o")
+
+[node name="WordGenerator" type="Node" parent="."]
+script = ExtResource("4_pbw6q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WordGenerator"]
+
+[node name="WordChoiceList" type="VBoxContainer" parent="WordGenerator/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -40.0
+offset_right = 37.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="WordChoiceColumns" type="HBoxContainer" parent="WordGenerator/CanvasLayer/WordChoiceList"]
+layout_mode = 2
+
+[node name="NounList" type="VBoxContainer" parent="WordGenerator/CanvasLayer/WordChoiceList/WordChoiceColumns"]
+layout_mode = 2
+
+[node name="AdjectiveList" type="VBoxContainer" parent="WordGenerator/CanvasLayer/WordChoiceList/WordChoiceColumns"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="WordGenerator/CanvasLayer/WordChoiceList"]
+layout_mode = 2
+text = "Confirm"
+
+[node name="SelectedWordList" type="HBoxContainer" parent="WordGenerator/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+
+[node name="NounList" type="VBoxContainer" parent="WordGenerator/CanvasLayer/SelectedWordList"]
+layout_mode = 2
+
+[node name="AdjectiveList" type="VBoxContainer" parent="WordGenerator/CanvasLayer/SelectedWordList"]
+layout_mode = 2
+
+[node name="TroopSpawner" type="Node" parent="."]
+script = ExtResource("3_rgh2o")
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("5_pbw6q")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 318.0
+offset_top = 104.0
+offset_right = 358.0
+offset_bottom = 144.0

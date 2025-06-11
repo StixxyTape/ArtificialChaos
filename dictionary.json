@@ -2,7 +2,7 @@
   "style": [
 	"A realistic image"
   ],
-  "descriptor": [
+  "adjective": [
 	"armored",
 	"magical",
 	"steampunk",
@@ -24,7 +24,7 @@
 	"massive",
 	"small"
   ],
-  "subject": [
+  "noun": [
 	"knight",
 	"wizard",
 	"robot",

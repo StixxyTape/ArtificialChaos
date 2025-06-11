@@ -1,10 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://decxeviq0c8pr"]
+[gd_scene load_steps=18 format=3 uid="uid://decxeviq0c8pr"]
 
-[ext_resource type="Script" uid="uid://ygrtw21mcobd" path="res://ImageGen.gd" id="1_1nc28"]
-[ext_resource type="Script" uid="uid://drfti4o3kudlu" path="res://WordGen.gd" id="2_he4lv"]
-[ext_resource type="Texture2D" uid="uid://csa2v2kwma5xx" path="res://bmw_logo_PNG19699.png" id="2_wm7h2"]
-[ext_resource type="Script" uid="uid://b0b2oaygvgu1m" path="res://CamController.gd" id="3_f7i2c"]
-[ext_resource type="Texture2D" uid="uid://iyyuu23s45qv" path="res://icon.svg" id="5_1nqw0"]
+[ext_resource type="Script" uid="uid://ygrtw21mcobd" path="res://Scripts/TroopSpawner.gd" id="1_1nc28"]
+[ext_resource type="Script" uid="uid://drfti4o3kudlu" path="res://Scripts/WordGenerator.gd" id="2_he4lv"]
 
 [sub_resource type="Gradient" id="Gradient_f7i2c"]
 offsets = PackedFloat32Array(0.0163934, 1)
@@ -49,11 +46,13 @@ gradient = SubResource("Gradient_cqprc")
 texture = SubResource("GradientTexture2D_fkrhb")
 texture_margin_top = 20.0
 
-[sub_resource type="Gradient" id="Gradient_fkrhb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_he4lv"]
+
+[sub_resource type="Gradient" id="Gradient_u88qm"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1dtuh"]
-gradient = SubResource("Gradient_fkrhb")
+gradient = SubResource("Gradient_u88qm")
 width = 512
 
 [sub_resource type="Gradient" id="Gradient_1dtuh"]
@@ -64,20 +63,10 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1nc28")
 
-[node name="BG" type="TextureRect" parent="."]
-offset_left = -495.0
-offset_top = -411.0
-offset_right = 1553.0
-offset_bottom = 1637.0
-texture = ExtResource("5_1nqw0")
+[node name="WordGenerator" type="Node" parent="."]
+script = ExtResource("2_he4lv")
 
-[node name="PromptInput" type="TextEdit" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 34.0
-offset_top = 24.0
-offset_right = 136.0
-offset_bottom = 145.0
+[node name="APIRequest" type="HTTPRequest" parent="."]
 
 [node name="Sprite" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -143,7 +132,7 @@ horizontal_alignment = 1
 
 [node name="ImageDisplay" type="TextureRect" parent="Sprite"]
 layout_mode = 2
-texture = ExtResource("2_wm7h2")
+texture = SubResource("CompressedTexture2D_he4lv")
 
 [node name="CloudParticles" type="CPUParticles2D" parent="Sprite"]
 position = Vector2(513, 648)
@@ -165,15 +154,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 86
 text = "Generate"
 
-[node name="APIRequest" type="HTTPRequest" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(512, 644)
-zoom = Vector2(0.4, 0.4)
-script = ExtResource("3_f7i2c")
-
-[node name="WordGenerator" type="Node" parent="."]
-script = ExtResource("2_he4lv")
-
-[connection signal="pressed" from="Sprite/GenerateButton" to="." method="_on_generate_button_pressed"]
 [connection signal="request_completed" from="APIRequest" to="." method="_on_api_request_completed"]
+[connection signal="pressed" from="Sprite/GenerateButton" to="." method="_on_generate_button_pressed"]

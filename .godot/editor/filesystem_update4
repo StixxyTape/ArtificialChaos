@@ -1,5 +1,10 @@
 res://ImageGen.tscn
-res://ImageGen.gd
-res://WordGen.gd
-res://CamController.gd
+res://Scenes/Troop.tscn
+res://Scenes/Main.tscn
+res://Scenes/SpawnParticles.tscn
+res://Scripts/WordGenerator.gd
 res://dictionary.json
+res://Scripts/InputManager.gd
+res://Scripts/TroopSpawner.gd
+res://Scripts/Troop.gd
+res://Scripts/Global.gd
